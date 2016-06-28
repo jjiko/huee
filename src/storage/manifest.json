@@ -1,0 +1,12 @@
+{
+  "name": "HueE - HueE Push Notifications",
+  "short_name": "HueE",
+  "icons": [{
+    "src": "//cdn.joejiko.com/img/favicons/hue/white_e27_b22x32.png",
+    "sizes": "32x32",
+    "type": "image/png"
+  }],
+  "start_url": "/",
+  "display": "standalone",
+  "gcm_sender_id": "29103454985"
+}
