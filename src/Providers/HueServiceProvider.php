@@ -1,42 +1,33 @@
 <?php
 
-namespace Jiko\Hue;
+namespace Jiko\Hue\Providers;
 
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Routing\Router;
+use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Input;
 
 class HueServiceProvider extends ServiceProvider
 {
-  public function boot(Router $router)
-  {
-    parent::boot($router);
+  protected $hostArray = ['local-huee.joejiko.com'];
 
-    $this->loadViewsFrom(__DIR__ . '/../Hue/src/resources/views', 'hue');
+  public function boot()
+  {
+    parent::boot();
+
+    if (in_array(Input::server('HTTP_HOST'), $this->hostArray)) {
+      $this->loadViewsFrom(__DIR__ . '/../resources/views', 'hue');
+    }
   }
 
   public function register()
   {
-    parent::register();
+
   }
 
-  public function map(Router $router)
+  public function map()
   {
-    if (in_array(Input::server('HTTP_HOST'), ['app.joejiko.com'])) {
-      $router->get('manifest.json', 'Jiko\Hue\Http\Controllers\HueController@manifest');
-      $router->get('service-worker.js', 'Jiko\Hue\Http\Controllers\HueController@service');
-      $router->get('notifications', 'Jiko\Hue\Http\Controllers\HueController@notifications');
-      $router->get('notifications/get', function () {
-        return response()->json(['status' => 200]);
-      });
-    }
-
-    if (in_array(Input::server('HTTP_HOST'), ['huee.joejiko.com', 'local-huee.joejiko.com', 'local.joejiko.com', 'localhost'])) {
-      if (in_array(Input::server('HTTP_HOST'), ['local.joejiko.com', 'localhost'])) {
-        $router->group(['prefix' => 'hue'], function () {
-          require_once(__DIR__ . '/../hue/src/Http/routes.php');
-        });
-      } else {
-        require_once(__DIR__ . '/../hue/src/Http/routes.php');
-      }
-    }
+    #if (!$this->app->routesAreCached()) {
+      require_once __DIR__ . '/../Http/routes.php';
+    #}
   }
 }

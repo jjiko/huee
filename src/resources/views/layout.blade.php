@@ -58,7 +58,7 @@
         </div>
     </div>
 </div>
-<script><?php echo file_get_contents(base_path('Jiko/Hue/src/storage/hue.js')); ?></script>
+<script><?php echo file_get_contents(base_path('packages/jjiko/hue/src/storage/hue.js')); ?></script>
 <script>var app = {}</script>
 <script src="/dist/js/app-hue.js" async defer></script>
 <script>
