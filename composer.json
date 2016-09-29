@@ -8,11 +8,15 @@
             "email": "me@joejiko.com"
         }
     ],
-    "minimum-stability": "dev",
     "require": {
         "php": ">=5.5.9",
         "illuminate/routing": "5.2.*",
         "illuminate/support": "5.2.*",
         "illuminate/view": "5.2.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Jiko\\Hue\\": "src/"
+        }
     }
 }
