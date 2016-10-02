@@ -14,9 +14,9 @@ class HueServiceProvider extends ServiceProvider
   {
     parent::boot();
 
-    if (in_array(Input::server('HTTP_HOST'), $this->hostArray)) {
+    //if (in_array(Input::server('HTTP_HOST'), $this->hostArray)) {
       $this->loadViewsFrom(__DIR__ . '/../resources/views', 'hue');
-    }
+    //}
   }
 
   public function register()
