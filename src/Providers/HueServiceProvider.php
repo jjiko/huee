@@ -2,9 +2,7 @@
 
 namespace Jiko\Hue\Providers;
 
-use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Input;
 
 class HueServiceProvider extends ServiceProvider
 {
@@ -26,8 +24,8 @@ class HueServiceProvider extends ServiceProvider
 
   public function map()
   {
-    #if (!$this->app->routesAreCached()) {
+    if (!$this->app->routesAreCached()) {
       require_once __DIR__ . '/../Http/routes.php';
-    #}
+    }
   }
 }

@@ -1,5 +1,5 @@
 <?php
-Route::group(['namespace' => 'Jiko\Hue\Http\Controllers'], function(){
+Route::group(['domain' => 'huee.joejiko.com', 'namespace' => 'Jiko\Hue\Http\Controllers'], function(){
   // pages
   Route::get('/', 'HueController@index');
 
